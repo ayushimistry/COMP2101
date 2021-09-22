@@ -31,5 +31,8 @@ echo "============================"
 echo ""
 echo "Human friendly format files are:"
 echo "==============================="
-ls -lh
+ls -lh |awk '{print $1,$2,$3,$4,$5,$7}'
 echo ""
+echo "Files with their size:"
+find . -type f -printf "%s %P\n" 
+
