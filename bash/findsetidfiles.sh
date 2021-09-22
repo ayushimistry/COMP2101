@@ -27,12 +27,13 @@ echo ""
 
 echo "12 regular largest files are:"
 echo "============================"
-#find / -type f -printf "" | sort -n | 
+find . -type f -printf "%b %P\n" | sort -n | tail -12 
 echo ""
 echo "Human friendly format files are:"
 echo "==============================="
-ls -lh |awk '{print $1,$2,$3,$4,$5,$7}'
+ls -lh |awk '{print $1,$2,$3,$4,$5,$9}'
 echo ""
 echo "Files with their size:"
+echo "================================"
 find . -type f -printf "%s %P\n" 
 
