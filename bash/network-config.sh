@@ -88,7 +88,7 @@ echo " "
 echo "***********************************************************************"
 
 systemRouter=$(ip r s default|  awk '{print $3}')
-syetmRouterName=$(getent hosts $systemRouter| awk '{print $2}')
+systemRouterName=$(getent hosts $systemRouter| awk '{print $2}')
 
 cat <<EOF
 
