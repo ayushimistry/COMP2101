@@ -75,7 +75,7 @@
 #   External IP     : $myExternalIP
 #   External Name   : $myExternalName
 
-cat <<EOF
+
 
 systemHostName=$(hostname)
 systemInterface=$(ip a |awk '/: e/{gsub(/:/,"");print $2}')
@@ -84,12 +84,13 @@ systemLanHost=$(getent hosts $systemLanAddress| awk '{print $2}')
 externalIpAddress=$(curl -s icanhazip.com)
 systemExternalName=$(getent hosts $externalIpAddress| awk '{print $2}')
 
+echo " "
 echo "***********************************************************************"
 
 systemRouter=$(route -n | head -3 | tail +3 | awk '{print $2}')
-syetmRouterName=
+syetmRouterName=$(getent hosts 192.168.134.2 |head -3 | awk '{print $2}')
 
-
+cat <<EOF
 
 Hostname        : $systemHostName
 LAN Address     : $systemLanAddress
@@ -97,7 +98,8 @@ LAN Hostname    : $systemLanHost
 External IP     : $externalIpAddress
 External Name   : $systemExternalName
 Router Address  : $systemRouter
-Router Hostname : $
+Router Hostname : $systemRouterName
 
 EOF
+
 
