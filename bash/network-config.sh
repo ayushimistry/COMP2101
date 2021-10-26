@@ -87,8 +87,8 @@ systemExternalName=$(getent hosts $externalIpAddress| awk '{print $2}')
 echo " "
 echo "***********************************************************************"
 
-systemRouter=$(route -n | head -3 | tail +3 | awk '{print $2}')
-syetmRouterName=$(getent hosts 192.168.134.2 |head -3 | awk '{print $2}')
+systemRouter=$(ip r s default|  awk '{print $3}')
+syetmRouterName=$(getent hosts $systemRouter| awk '{print $2}')
 
 cat <<EOF
 
