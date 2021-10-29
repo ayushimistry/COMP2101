@@ -26,12 +26,33 @@ error="$1"
 echo "sending error messages to the file $error" && exit 1
 }
 #This function displays help information if the user asks for it on the command line or gives us a bad command line
-#function displayhelp {
-#}
+function displayhelp {
+echo "enter option:"
+read option
+option="$value"
+man "$value"
+echo
+"
+-h|--help: 	Display help information
+--host: 	Display Host information
+--domain: 	Give Domain information
+--ipconfig: 	Shows IP interfaces
+--os: 		shows operating system details
+--cpu: 	processor information
+--memory:   	shows memory usage
+--disk: 	displays disk information
+--printer:      shows printer information
+"
+}
 
 # This function will remove all the temp files created by the script
 # The temp files are all named similarly, "/tmp/somethinginfo.$$"
+function cleanup {
+rm /tmp/*info.*
+}
+
 # A trap command is used after the function definition to specify this function is to be run if we get a ^C while running
+trap cleanup SIGINT
 
 # End of section to be done for TASK
 # Remainder of script does not require any modification, but may need to be examined in order to create the functions for TASK
@@ -43,7 +64,6 @@ function getipinfo {
   # reuse our netid.sh script from lab 4
   bash netid.sh
 }
-
 # process command line options
 partialreport=
 while [ $# -gt 0 ]; do
