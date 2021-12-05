@@ -1,0 +1,1 @@
+get-ciminstance win32_networkadapterconfiguration | where-object IPEnabled -eq $true | format-table Description,Index,IPAdress,IPSubnet, DNSDomain,DNSServerSearchOrder
