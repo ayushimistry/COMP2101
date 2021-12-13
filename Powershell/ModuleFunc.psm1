@@ -5,7 +5,6 @@ function welcome {
 	
 }
 
-welcome
 
 function get-mydisks {
 	Get-CimInstance Win32_DiskDrive | format-list Name,Model,Size,Manufacturer,FirmwareRevision,SerialNumber
@@ -20,7 +19,6 @@ function get-cpuinfo {
 	
 }
 
-get-cpuinfo
 
 function HardwareReport{
 Write-Output "------------------------------------------------------"
@@ -28,7 +26,7 @@ Write-Output "System hardware description"
 Write-Output "------------------------------------------------------"
 get-ciminstance win32_computersystem
 }
-HardwareReport
+
 
 Write-Output " "
 
@@ -38,7 +36,7 @@ Write-Output "Operation System description"
 Write-Output "------------------------------------------------------"
 get-ciminstance win32_operatingsystem |format-list Name, Version
 }
-OsReport
+
 
 function ProcessorReport{
 Write-Output "------------------------------------------------------"
@@ -69,7 +67,7 @@ format-list  Name, NumberOfCores, CurrentClockSpeed, MaxClockSpeed,
             $output }
     }
 }
-ProcessorReport
+
 
 
 function MemoryReport{
@@ -85,7 +83,6 @@ Write-Output "------------------------------------------------------"
 Write-Output "Total RAM is:"
 get-ciminstance win32_physicalmemory | Format-list Capacity
 }
-MemoryReport
 
 function DiskReport{
 Write-Output "------------------------------------------------------"
@@ -110,7 +107,7 @@ $diskdrives = Get-CIMInstance CIM_diskdrive
   }
 
 }
-DiskReport
+
 
 function NetworkReport{
 Write-Output "------------------------------------------------------"
@@ -119,7 +116,7 @@ Write-Output "------------------------------------------------------"
 $adapter = get-ciminstance win32_networkadapterconfiguration
 $adapter | where-object IPEnabled -eq 'true' | format-table Description,Index,IPAddress,IPSubnet,DNSDomain,DNSServerSearchOrder
 }
-NetworkReport
+
 
 function VideocardReport{
 Write-Output "------------------------------------------------------"
@@ -127,4 +124,4 @@ Write-Output "System Video Card Description"
 Write-Output "------------------------------------------------------"
 get-ciminstance win32_videocontroller | Format-List Caption, Description, VideoModeDescription
 }
-VideocardReport
+
